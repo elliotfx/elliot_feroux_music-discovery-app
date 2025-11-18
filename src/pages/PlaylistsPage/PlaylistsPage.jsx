@@ -55,8 +55,7 @@ export default function PlaylistsPage() {
   return (
     <section className="playlists-container page-container" aria-labelledby="playlists-title">
       <h1 id="playlists-title" className="playlists-title page-title">Your Playlists</h1>
-      <h2 className="playlists-count">{playlists.length} of {playlists.length} Playlists</h2>      {loading && <output className="playlists-loading" data-testid="loading-indicator">Loading playlists…</output>}
-      {error && !loading && <div className="playlists-error" role="alert">{error}</div>}
+      <h2 className="playlists-count">{playlists.length} of {totalPlaylists} Playlists</h2>      {error && !loading && <div className="playlists-error" role="alert">{error}</div>}
       {!loading && !error && (
         <ol className="playlists-list">
           {playlists.map((playlist) => (
