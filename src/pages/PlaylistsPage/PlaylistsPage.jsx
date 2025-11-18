@@ -47,7 +47,7 @@ export default function PlaylistsPage() {
           }
         }
         setPlaylists(res.data.items);
-      })
+        setTotalPlaylists(res.data.total);      })
       .catch(err => { setError(err.message); })
       .finally(() => { setLoading(false); });
   }, [token, navigate]);
