@@ -1,36 +1,81 @@
-/* Layout shared via .list-item utility */
+/* src/components/PlayListItem/PlayListItem.css */
+
+.playlist-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.playlist-item:hover,
+.playlist-item:focus-within {
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transform: translateY(-1px);
+}
+
 .playlist-item-cover {
-  width: 80px;
-  height: 80px;
-  border-radius: 6px;
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
   object-fit: cover;
   flex-shrink: 0;
 }
-.playlist-item-details { flex: 1; }
-.playlist-item-details-header {
+
+/* Zone texte principale (titre + meta) */
+.playlist-item-main {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4px;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0; /* pour gérer les ellipses */
+  flex: 1 1 auto;
 }
+
 .playlist-item-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #000;
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+.playlist-item-meta {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
 .playlist-item-owner {
-  font-size: 1em;
-  color: #555;
-  margin-left: 16px;
+  font-style: italic;
 }
+
+.playlist-item-separator {
+  opacity: 0.6;
+}
+
 .playlist-item-tracks {
-  font-size: 0.9em;
-  color: #777;
-  margin-bottom: 4px;
+  opacity: 0.9;
 }
-.playlist-item-link {
-  font-size: 0.9em;
-  color: #1DB954;
+
+/* Lien Spotify à droite */
+.playlist-item-open-link {
+  flex-shrink: 0;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1db954;
+}
+
+.playlist-item-open-link:hover,
+.playlist-item-open-link:focus {
+  text-decoration: underline;
 }

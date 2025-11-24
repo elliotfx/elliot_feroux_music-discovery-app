@@ -1,20 +1,39 @@
-/* Container & title now provided by .page-container and .page-title utilities */
+/* src/pages/PlaylistsPage/PlaylistsPage.css */
+
+.playlists-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.playlists-title {
+  font-size: 2rem;
+  margin: 0;
+}
 
 .playlists-count {
-  text-align: center;
-  font-weight: normal;
-  margin-top: 0.25rem;
-  color: #555;
+  margin: 0.25rem 0 1.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.9;
 }
 
+.playlists-loading,
+.playlists-error {
+  text-align: center;
+  margin-top: 10vh;
+}
+
+.playlists-error {
+  color: #ffb4b4;
+}
+
+/* Liste des playlists */
 .playlists-list {
+  list-style: none;
+  margin: 0;
   padding: 0;
-  list-style: decimal inside;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-
-.playlists-loading, .playlists-error {
-  margin-top: 20vh;
-  text-align: center;
-}
-
-.playlists-error { color: red; }
