@@ -33,7 +33,7 @@ export default function PlayListItem({ playlist, onClick }) {
       {coverUrl && (
         <img
           src={coverUrl}
-          alt={playlist.name}
+          alt="cover"
           className="playlist-item-cover"
         />
       )}
