@@ -1,10 +1,13 @@
 // src/pages/PlaylistsPage.test.jsx
 
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, test, beforeEach, afterEach, jest } from '@jest/globals';
 import '@testing-library/jest-dom';
-import PlaylistPage from './PlaylistPage.jsx';
-import * as spotifyApi from '../../api/spotify-playlists.js';
-import { KEY_ACCESS_TOKEN } from '../../constants/storageKeys.js';
+import { render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
+
+import PlaylistPage from './PlaylistPage.jsx'; 
+import * as spotifyApi from '../../api/spotify-playlists';
+import { KEY_ACCESS_TOKEN } from '../../constants/storageKeys';
 
 
 const playlistData = {
