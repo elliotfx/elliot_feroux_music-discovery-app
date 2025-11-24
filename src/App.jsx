@@ -1,3 +1,5 @@
+// src/App.jsx
+
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage/WelcomePage.jsx';
 import TopTracksPage from './pages/TopTracksPage/TopTracksPage.jsx';
@@ -8,6 +10,7 @@ import Layout from './components/Layout/Layout.jsx';
 import LoginPage from './pages/LoginPage/LoginPage.jsx';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage.jsx';
 import AccountPage from './pages/AccountPage/AccountPage.jsx';
+import PlaylistPage from './pages/PlaylistPage/PlaylistPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +24,7 @@ const router = createBrowserRouter([
       { path: 'top-tracks', element: <TopTracksPage /> },
       { path: 'top-artists', element: <TopArtistsPage /> },
       { path: 'playlists', element: <PlaylistsPage /> },
+      { path: 'playlists/:playlistId', element: <PlaylistPage /> },
       { path: '*', element: <NotFoundPage /> }
     ]
   }
