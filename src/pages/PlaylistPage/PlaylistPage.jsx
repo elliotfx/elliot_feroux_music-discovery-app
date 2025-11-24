@@ -138,7 +138,7 @@ export default function PlaylistPage() {
                   rel="noreferrer"
                   className="playlist-spotify-link"
                 >
-                  Lire la playlist
+                  Open in Spotify
                 </a>
               )}
             </div>
@@ -162,6 +162,8 @@ export default function PlaylistPage() {
                       : null;
                   const trackSpotifyUrl =
                     track.external_urls?.spotify ?? '';
+                  const trackCover =
+                    track.album?.images?.[0]?.url ?? null;
 
                   return (
                     <div
@@ -169,30 +171,40 @@ export default function PlaylistPage() {
                       className="playlist-track-row"
                       data-testid={`playlist-track-${track.id}`}
                     >
-                      <div>
-                        <div>{trackName}</div>
-                        <div>
-                          {artistsNames}
-                          {albumName ? ` • ${albumName}` : ''}
+                      <div className="playlist-track-main">
+                        {trackCover && (
+                          <img
+                            src={trackCover}
+                            alt={trackName}
+                            className="playlist-track-cover"
+                          />
+                        )}
+                        <div className="playlist-track-text">
+                          <div className="playlist-track-title">
+                            {trackName}
+                          </div>
+                          <div className="playlist-track-subtitle">
+                            {artistsNames}
+                            {albumName ? ` • ${albumName}` : ''}
+                          </div>
                         </div>
                       </div>
 
-                      <div>
+                      <div className="playlist-track-meta">
                         {popularity !== null && (
-                          <span>Popularity: {popularity}</span>
+                          <span className="playlist-track-popularity">
+                            Popularity: {popularity}
+                          </span>
                         )}
                         {trackSpotifyUrl && (
-                          <>
-                            {' '}
-                            ·{' '}
-                            <a
-                              href={trackSpotifyUrl}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              Open
-                            </a>
-                          </>
+                          <a
+                            href={trackSpotifyUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="playlist-track-open-link"
+                          >
+                            Open
+                          </a>
                         )}
                       </div>
                     </div>
