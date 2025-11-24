@@ -1,3 +1,5 @@
+// src/pages/PlaylistsPage/PlaylistsPage.jsx
+
 import { useState, useEffect } from 'react';
 import { buildTitle } from '../../constants/appMeta.js';
 import { useRequireToken } from '../../hooks/useRequireToken.js';
@@ -32,14 +34,15 @@ export default function PlaylistsPage() {
   const { token } = useRequireToken();
 
   // Set document title
-  useEffect(() => { document.title = buildTitle('Playlists'); }, []);
-
+  useEffect(() => {
+    document.title = buildTitle('Playlists');
+  }, []);
 
   useEffect(() => {
     if (!token) return; // wait for auth check
     // fetch user playlists when token changes
     fetchUserPlaylists(token, limit)
-      .then(res => {
+      .then((res) => {
         if (res.error) {
           if (!handleTokenError(res.error, navigate)) {
             setError(res.error);
@@ -47,20 +50,48 @@ export default function PlaylistsPage() {
         }
         setPlaylists(res.data.items);
       })
-      .catch(err => { setError(err.message); })
-      .finally(() => { setLoading(false); });
+      .catch((err) => {
+        setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [token, navigate]);
 
   return (
-    <section className="playlists-container page-container" aria-labelledby="playlists-title">
-      <h1 id="playlists-title" className="playlists-title page-title">Your Playlists</h1>
+    <section
+      className="playlists-container page-container"
+      aria-labelledby="playlists-title"
+    >
+      <h1 id="playlists-title" className="playlists-title page-title">
+        Your Playlists
+      </h1>
       <h2 className="playlists-count">{limit} Playlists</h2>
-      {loading && <output className="playlists-loading" data-testid="loading-indicator">Loading playlists…</output>}
-      {error && !loading && <div className="playlists-error" role="alert">{error}</div>}
+
+      {loading && (
+        <output
+          className="playlists-loading"
+          data-testid="loading-indicator"
+          role="status"
+        >
+          Loading playlists…
+        </output>
+      )}
+
+      {error && !loading && (
+        <div className="playlists-error" role="alert">
+          {error}
+        </div>
+      )}
+
       {!loading && !error && (
         <ol className="playlists-list">
           {playlists.map((playlist) => (
-            <PlayListItem key={playlist.id} playlist={playlist} />
+            <PlayListItem
+              key={playlist.id}
+              playlist={playlist}
+              onClick={() => navigate(`/playlists/${playlist.id}`)}
+            />
           ))}
         </ol>
       )}
