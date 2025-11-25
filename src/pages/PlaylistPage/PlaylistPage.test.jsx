@@ -6,8 +6,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
 import PlaylistPage from './PlaylistPage.jsx'; 
-import * as spotifyApi from '../../api/spotify-playlists';
-import { KEY_ACCESS_TOKEN } from '../../constants/storageKeys';
+import * as spotifyApi from './../../api/spotify-playlists.js'
+import { KEY_ACCESS_TOKEN } from './../../constants/storageKeys.js';
 
 
 const playlistData = {
@@ -54,8 +54,7 @@ describe('PlaylistPage', () => {
             </MemoryRouter>
         );
 
-        expect(document.title).toBe('Playlist | Spotify App');
-        
+            expect(document.title).toBe('Playlist | Music Discovery App');        
         // loading state
         expect(screen.getByRole('status')).toHaveTextContent(/loading playlist/i);
 
@@ -138,7 +137,7 @@ describe('PlaylistPage', () => {
     });
 
     test("handleTokenError called on token expiry error", async () => {
-        const handleTokenErrorSpy = jest.spyOn(require('../utils/handleTokenError.js'), 'handleTokenError');
+        const handleTokenErrorSpy = jest.spyOn(require('./../../utils/handleTokenError.js'), 'handleTokenError');
         jest.spyOn(spotifyApi, 'fetchPlaylistById').mockResolvedValue({ playlist: null, error: 'The access token expired' });
 
         render(
