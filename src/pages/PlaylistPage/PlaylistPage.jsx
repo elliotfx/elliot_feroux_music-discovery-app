@@ -46,16 +46,16 @@ export default function PlaylistPage() {
             setError(res.error);
           }
           setPlaylist(null);
+          setLoading(false); //  Arrêt du chargement en cas d'erreur API
           return;
         }
         setPlaylist(res.data);
+        setLoading(false); //  Arrêt du chargement en cas de succès
       })
       .catch(() => {
         setError('Failed to fetch playlist.');
         setPlaylist(null);
-      })
-      .finally(() => {
-        setLoading(false);
+        setLoading(false); //  Arrêt du chargement en cas de crash
       });
   }, [token, playlistId, navigate]);
 
