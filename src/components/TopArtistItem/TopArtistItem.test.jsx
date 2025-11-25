@@ -28,6 +28,7 @@ describe('TopArtistItem component', () => {
         expect(img).toHaveAttribute('src', artist.images[1].url);
 
         // details assertions
+        expect(listItem).toHaveTextContent('1. Test Artist');
         expect(listItem).toHaveTextContent(artist.name);
         expect(listItem).toHaveTextContent(`Genres: ${artist.genres.join(', ')}`);
         expect(listItem).toHaveTextContent(`Followers: ${artist.followers.total.toLocaleString()}`);
@@ -37,8 +38,7 @@ describe('TopArtistItem component', () => {
         const link = within(listItem).getByRole('link', { name: /view artist/i });
         expect(link).toHaveAttribute('href', artist.external_urls.spotify);
 
-        // uncomment to debug
-        //screen.debug();
+        
     });
 
     test('handles missing artist image gracefully', () => {
@@ -60,6 +60,7 @@ describe('TopArtistItem component', () => {
         expect(within(listItem).queryByAltText(artist.name)).not.toBeInTheDocument();
 
         // details assertions
+        expect(listItem).toHaveTextContent('2. No Image Artist');
         expect(listItem).toHaveTextContent(artist.name);
         expect(listItem).toHaveTextContent(`Genres: ${artist.genres.join(', ')}`);
         expect(listItem).toHaveTextContent(`Followers: ${artist.followers.total.toLocaleString()}`);
@@ -68,7 +69,6 @@ describe('TopArtistItem component', () => {
         const link = within(listItem).getByRole('link', { name: /view artist/i });
         expect(link).toHaveAttribute('href', artist.external_urls.spotify);
 
-        // uncomment to debug
-        //screen.debug();
+    
     });
 });
