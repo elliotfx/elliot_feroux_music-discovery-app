@@ -29,6 +29,17 @@
   margin-bottom: 4px;
 }
 .playlist-item-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+}
+.playlist-item-link:hover .playlist-item-title {
+  color: #1DB954;
+}
+.playlist-link {
   font-size: 0.9em;
   color: #1DB954;
   text-decoration: none;
