@@ -85,7 +85,7 @@ export default function PlaylistPage() {
 
   return (
     <section className="playlist-container page-container" aria-labelledby="playlist-title">
-      {loading && <output className="playlist-loading" role="status" data-testid="loading-indicator">Loading playlist…</output>}
+      {loading && <output className="playlist-loading" data-testid="loading-indicator">Loading playlist…</output>}
       {error && !loading && <div className="playlist-error" role="alert">{error}</div>}
       {!loading && !error && playlist && (
         <>
